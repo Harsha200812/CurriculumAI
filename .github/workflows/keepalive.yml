@@ -1,0 +1,15 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every day at midnight UTC
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl Supabase
+        run: |
+          curl -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+               -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+               https://ndkcvtmsoqsbtsfaqixb.supabase.co/rest/v1/ 
